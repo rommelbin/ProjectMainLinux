@@ -4,16 +4,22 @@ const router = Router()
 const Article = require('../../models/Article')
 router.get('/', (req, res) => {
     res.render('addInfo.hbs', {
-        title: 'Additional Information',
+        title: 'add Article',
         isAI: true
     })
 })
 
 
 router.post('/',  async (req, res) => {
-    const articles = new Article(req.body.title, req.body.text)
+    const articles = new Article({
+        title: req.body.title,
+        text: req.body.text,
+        author: req.body.author,
+        date: req.body.date
+    })
+
     await articles.save()
-    res.redirect('/blog')
+    res.redirect('/myShop')
 })
 
 

@@ -24,8 +24,9 @@ router.get('/', async (req, res) => {
 router.get('/edit/:id', async (req,res) => {
     let i = {}
     const items = await Item.find()
-     items.filter( async (c) => {
-        if(c._id == req. params.id) {
+
+    items.filter((c) => {
+        if(c._id == req.params.id) {
             i = {
                   price: c.price,
                   title: c.title,
@@ -35,24 +36,27 @@ router.get('/edit/:id', async (req,res) => {
          }
     })
 
-        res.render('itemEdit.hbs', {
-            title: i.title,
-            i
-        })
-       
-
+    res.render('itemEdit.hbs', {
+        title: i.title,
+        i
+    })
 })
-router.post('/', async (req,res )  => {
-    try {
-        await Item.findOneAndUpdate(
-                {_id: req.body.id,},
-                {title: req.body.title, price: req.body.price, img: req.body.img},
-                {useFindAndModify: false}
-        )
-        res.redirect('/myShop')
-    } catch (e) {
-        console.log(e);
-    }
 
+router.post('/', async (req,res )  => {
+    if(req.body.delete == 'delete') {
+        await Item.deleteOne({_id: req.body.id})
+    } else {
+        try {
+            await Item.findOneAndUpdate(
+                    {_id: req.body.id,},
+                    {title: req.body.title, price: req.body.price, img: req.body.img},
+                    {useFindAndModify: false}
+            )
+            res.redirect('/myShop')
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
 })
 module.exports = router

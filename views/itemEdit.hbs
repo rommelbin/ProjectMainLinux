@@ -21,3 +21,8 @@
     <button type="submit" class='btn'>Edit Item</button>
 </form>
 
+<form action="/myShop" method="post">
+  <textarea name="id" class='hidden'>{{i.id}}</textarea>
+  <textarea name="delete"  id="{{i.id}}" class='hidden'>delete</textarea>
+  <button type="submit" class='btn'> Delete item</button>
+</form>

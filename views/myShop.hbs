@@ -1,0 +1,19 @@
+<div class="flexTemplate">    
+    {{#each items}}
+    <div class="rowItem">
+        <div class='itemTemp'>
+            <span class = 'namePrd'> {{title}}</span>
+        </div>       
+        <img src="{{img}}" alt="{{img}}" class='imgItem'>
+        <div class="itemTemp">
+            <span class='price'> {{price}}</span>
+        </div>
+        <form action="/myShop" method='POST'>
+            <input type="text" class='hidden' name='item' id='{{id}}' value={{id}}> 
+            <button type="submit" class='btn bsk' name='{{id}}' id='{{id}}' data-el='buy'>Buy</button>
+        </form>
+             <a href="/myShop/edit/{{id}}" class="btn bsk" id='{{id}}'>Edit</a>
+
+    </div>
+    {{/each}}
+</div>

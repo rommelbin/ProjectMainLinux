@@ -1,0 +1,16 @@
+<h1>Blog</h1>
+
+<div class="blogContainer">
+    
+        {{#if articles.length}}
+        <div class="collection">
+            {{#each articles}}
+
+                <a href="/blog/{{id}}" class="collection-item question">{{title}}</a>
+            {{/each}}
+        </div>
+        {{else}}
+        <h1>There is no articles</h1>
+        {{/if}}
+   
+</div>   

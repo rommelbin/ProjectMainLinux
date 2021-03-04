@@ -1,0 +1,23 @@
+
+
+<form action='/myShop' method='POST'>
+      <div class="row">
+        <div class="input-field col s12">
+          
+          <textarea id="title" class="materialize-textarea" name='title' type='text' >{{i.title}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <textarea id="price" class="materialize-textarea" name='price' type='number' >{{i.price}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          <textarea id="img" class="materialize-textarea" name='img' type='text' >{{i.img}}</textarea>
+        </div>
+    </div>
+          <textarea name="id" id="id" class='hidden'>{{i.id}}</textarea>
+    <button type="submit" class='btn'>Edit Item</button>
+</form>
+

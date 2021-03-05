@@ -26,8 +26,26 @@ router.get('/:id', async (req,res) => {
             }
         }
     })
-    console.log(i);
     res.render('article.hbs', {
+        title: i.title,
+        i
+    })
+})
+router.get('/:id/edit', async (req,res) => {
+    let i = {}
+    const articles = await Article.find()
+    articles.filter(async (c) => {
+        if(req.params.id == c._id) {
+            i = {
+                title: c.title,
+                text: c.text,
+                author: c.title,
+                date: c.date,
+                id: req.params.id
+            }
+        }
+    })
+    res.render('editInfo.hbs', {
         title: i.title,
         i
     })

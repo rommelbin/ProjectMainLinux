@@ -43,12 +43,13 @@ router.get('/edit/:id', async (req,res) => {
 })
 
 router.post('/', async (req,res )  => {
-    if(req.body.delete == 'delete') {
+    if(req.body.delete) {
         await Item.deleteOne({_id: req.body.id})
+        res.redirect('/myShop')
     } else {
         try {
             await Item.findOneAndUpdate(
-                    {_id: req.body.id,},
+                    {_id: req.body.id},
                     {title: req.body.title, price: req.body.price, img: req.body.img},
                     {useFindAndModify: false}
             )

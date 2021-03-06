@@ -20,7 +20,7 @@ router.get('/:id', async (req,res) => {
             i = {
                 title: c.title,
                 text: c.text,
-                author: c.title,
+                author: c.author,
                 date: c.date,
                 id: req.params.id
             }
@@ -35,11 +35,12 @@ router.get('/:id/edit', async (req,res) => {
     let i = {}
     const articles = await Article.find()
     articles.filter(async (c) => {
+
         if(req.params.id == c._id) {
             i = {
                 title: c.title,
                 text: c.text,
-                author: c.title,
+                author: c.author,
                 date: c.date,
                 id: req.params.id
             }
@@ -50,7 +51,21 @@ router.get('/:id/edit', async (req,res) => {
         i
     })
 })
+router.post('/', async (req, res) => { //from EditInfo.hbs
+    if(req.body.delete) {
+        await Article.deleteOne({_id: req.body.id})
+        console.log('win!');
+        res.redirect('/blog')
+    } else {
+        await Article.findOneAndUpdate(
+            {_id:req.body.id},
+            {title: req.body.title, text: req.body.text, author: req.body.author, date: req.body.date},
+            {useFindAndModify: false} )
+        console.log('lose!');
+        res.redirect(`/blog/${req.body.id}`)
+    }
 
+}) 
 
 
 

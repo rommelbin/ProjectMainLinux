@@ -1,0 +1,33 @@
+<form action='/blog' method='POST'>
+      <div class="row">
+          <h4>Title</h4>
+        <div class="input-field col s12">
+          <textarea id="title" class="materialize-textarea" name='title' type='text'> {{i.title}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Text</h4>
+        <div class="input-field col s12">
+          <textarea id="text" class="materialize-textarea" name='text' type='text'>{{i.text}} </textarea>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Author</h4>
+        <div class="input-field col s12">
+          <textarea id="text" class="materialize-textarea" name='author' type='text'>{{i.author}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Date</h4>
+        <div class="input-field col s12">
+          <textarea id="text" class="materialize-textarea" name='date' type='text'>{{i.date}}</textarea>
+        </div>
+    </div>
+    <textarea name="id" class='hidden'>{{i.id}}</textarea>
+    <button name='edit' type="submit" class='btn'>Edit Article</button>
+</form>
+<form action="/blog" method="post">
+  <textarea name="delete"  id="{{i.id}}" class='hidden'>delete</textarea>
+  <textarea name="id" class='hidden'>{{i.id}}</textarea>
+   <button type="submit" class='btn'> Delete item</button>
+</form>
